@@ -24,15 +24,10 @@ router.get('/', function(req,res){
 });
 
 router.post('/uploadFileWithOriginalFilename', uploadWithOriginalFilename.single('attachment'), function(req,res){ // 5
-  var pathFile = '../uploadedFiles/' + req.file.filename
+  var pathFile = '/home/ohs/RAZEN/PDF-compression/uploadedFiles/' + req.file.filename
+  var newFile = '/home/ohs/RAZEN/PDF-compression/newFile/' + req.file.filename
 
-  shell.ls().forEach(function (file) {
-    shell.sed('-i', 'BUILD_VERSION', 'v0.1.2', file);
-    shell.sed('-i', /^.*REMOVE_THIS_LINE.*$/, '', file);
-    shell.sed('-i', /.*REPLACE_LINE_WITH_MACRO.*\n/, shell.cat('macro.js'), file);
-  });
-
-  if (shell.exec('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dNOPAUSE -dBATCH -sOutputFile=../newFile/' + req.file.filename + ' ' + pathFile).code) {
+  if (shell.exec('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dNOPAUSE -dBATCH -sOutputFile=' + newFile + ' ' + pathFile).code) {
     shell.echo('Error');
     shell.exit(1);
   }

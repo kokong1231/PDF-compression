@@ -43,7 +43,7 @@ router.get('/:file_name', async function(req, res, next) {
     });
   } 
 
-  var file = '../newFile/' + req.params.file_name;
+  var file = '/home/ohs/RAZEN/PDF-compression/newFile/' + req.params.file_name;
   // var file = './newFile/' + req.params.file_name;
   
   try {

@@ -44,7 +44,7 @@ app.listen(port, function(){
   var dir = './uploadedFiles';
   if (!fs.existsSync(dir)) fs.mkdirSync(dir); // 2
 
-  console.log('server on! http://0.0.0.0:'+port);
+  console.log('server on! http://127.0.0.1:'+port);
 });
 
 module.exports = app;

@@ -1,0 +1,11 @@
+<h1>Success!</h1>
+
+<% if(file_){ %>
+<pre><%=JSON.stringify(file_, null, 2)%></pre>
+<% }%>
+
+<a href='/<%= file_.filename %>'>DownLoad</a>
+
+<br>
+
+<a href='/'>Back</a>

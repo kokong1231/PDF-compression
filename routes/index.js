@@ -26,9 +26,12 @@ router.get('/', function(req,res){
 router.post('/uploadFileWithOriginalFilename', uploadWithOriginalFilename.single('attachment'), function(req,res){ // 5
   var pathFile = '../uploadedFiles/' + req.file.filename
 
-  shell.exec('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dNOPAUSE -dBATCH -sOutputFile=../newFile/' + req.file.filename + ' ' + pathFile);
+  if (shell.exec('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dNOPAUSE -dBATCH -sOutputFile=../newFile/' + req.file.filename + ' ' + pathFile).code) {
+    shell.exec('Error');
+    shell.exec(1);
+  }
 
-  res.render('confirmation', { file_:req.file, files:null });
+  res.render('confirmation', { file_:req.file });
 });
 
 router.get('/:file_name', async function(req, res, next) {

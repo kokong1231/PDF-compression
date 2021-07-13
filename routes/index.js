@@ -26,7 +26,7 @@ router.get('/', function(req,res){
 router.post('/uploadFileWithOriginalFilename', uploadWithOriginalFilename.single('attachment'), function(req,res){ // 5
   var pathFile = '../uploadedFiles/' + req.file.filename
 
-  shell.exec('ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile=../newFile/' + req.file.filename + '_new ' + pathFile);
+  shell.exec('gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default -dNOPAUSE -dBATCH -sOutputFile=../newFile/' + req.file.filename + ' ' + pathFile);
 
   res.render('confirmation', { file_:req.file, files:null });
 });
@@ -39,7 +39,7 @@ router.get('/:file_name', async function(req, res, next) {
     });
   } 
 
-  var file = '../newFile/' + req.params.file_name + '_new';
+  var file = '../newFile/' + req.params.file_name;
   // var file = './newFile/' + req.params.file_name;
   
   try {

@@ -31,7 +31,14 @@ router.post('/uploadFileWithOriginalFilename', uploadWithOriginalFilename.single
   res.render('confirmation', { file_:req.file, files:null });
 });
 
-router.get('/:file_name', function(req, res, next) {
+router.get('/:file_name', async function(req, res, next) {
+  await sleep(4000)
+  function sleep(ms) {
+    return new Promise((resolve) => {
+      setTimeout(resolve, ms);
+    });
+  } 
+
   var file = '../newFile/' + req.params.file_name + '_new';
   // var file = './newFile/' + req.params.file_name;
   

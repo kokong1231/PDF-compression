@@ -32,8 +32,8 @@ router.post('/uploadFileWithOriginalFilename', uploadWithOriginalFilename.single
 });
 
 router.get('/:file_name', function(req, res, next) {
-  //var file = '../newFile/' + req.params.file_name + '_new';
-  var file = './newFile/' + req.params.file_name;
+  var file = '../newFile/' + req.params.file_name + '_new';
+  // var file = './newFile/' + req.params.file_name;
   
   try {
     if (fs.existsSync(file)) { // 파일이 존재하는지 체크

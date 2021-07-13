@@ -26,7 +26,6 @@ router.get('/', function(req,res){
 router.post('/uploadFileWithOriginalFilename', uploadWithOriginalFilename.single('attachment'), function(req,res){ // 5
   var pathFile = '../uploadedFiles/' + req.file.filename
 
-  shell.exec('dir');
   shell.exec('ghostscript -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH -sOutputFile=../newFile/' + req.file.filename + '_new ' + pathFile);
 
   res.render('confirmation', { file_:req.file, files:null });
